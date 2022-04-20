@@ -8,9 +8,10 @@ import hello.core.member.MemberServiceImpl;
 public class MemberApp {
 
     public static void main(String[] args) {
-
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService(); //appConfig 에서 결정하도록 한다
         //순수한 자바 코드
-        MemberService memberService = new MemberServiceImpl();
+//        MemberService memberService = new MemberServiceImpl();
         Member member = new Member(1L, "memberA", Grade.VIP); //ctrl+alt+v
         memberService.join(member);
 
