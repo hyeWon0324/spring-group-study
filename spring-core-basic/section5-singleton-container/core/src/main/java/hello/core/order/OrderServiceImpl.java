@@ -14,8 +14,19 @@ public class OrderServiceImpl implements OrderService {
 //    private final DiscountPolicy discountPolicy = new FixedDiscountPolicy(); //고정 할인 금액
 //    private final DiscountPolicy discountPolicy = new RateDiscountPolicy(); //고정 할인 금액
 
-    private final MemberRepository memberRepository;
-    private final DiscountPolicy discountPolicy; //인터페이스에만 의존하지만 null pointer Exception
+    public void setMemberRepository(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+
+    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+        this.discountPolicy = discountPolicy;
+    }
+
+    /* @Autowired */
+    private MemberRepository memberRepository;
+
+//    @Autowired
+    private DiscountPolicy discountPolicy; //인터페이스에만 의존하지만 null pointer Exception
 
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
@@ -30,4 +41,10 @@ public class OrderServiceImpl implements OrderService {
 
         return new Order(memberId, itemName, itemPrice, discountPrice);
     }
+
+    @Autowired
+    public void init() {
+
+    }
+
 }
