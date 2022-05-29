@@ -1,7 +1,11 @@
 package hello.core.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 
 //회원 서비스
+@Component
 public class MemberServiceImpl implements MemberService{
 
     //메모리 회원 저장소 객체
@@ -14,6 +18,7 @@ public class MemberServiceImpl implements MemberService{
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
+    //MemberRepository 인 빈을 여기에 주입해준다.
 
     @Override
     public void join(Member member) {
@@ -23,5 +28,10 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public Member findMember(Long memberId) {
         return memberRepository.findById(memberId);
+    }
+
+    //테스트 용도
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 }

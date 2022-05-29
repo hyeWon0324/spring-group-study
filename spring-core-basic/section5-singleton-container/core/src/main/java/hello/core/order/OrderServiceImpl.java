@@ -3,7 +3,10 @@ package hello.core.order;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderServiceImpl implements OrderService {
 
     //회원을 조회하기 위해
@@ -28,6 +31,7 @@ public class OrderServiceImpl implements OrderService {
 //    @Autowired
     private DiscountPolicy discountPolicy; //인터페이스에만 의존하지만 null pointer Exception
 
+    @Autowired //를 사용하면 여러 의존관계를 자동으로 주입 받을 수 있다.
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
@@ -45,6 +49,10 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     public void init() {
 
+    }
+    //테스트 용도
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 
 }
