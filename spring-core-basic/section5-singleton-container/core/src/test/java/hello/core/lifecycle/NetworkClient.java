@@ -12,7 +12,7 @@ public class NetworkClient implements InitializingBean, DisposableBean {
     public NetworkClient() {
         System.out.println("생성자를 호출, url= " + url);
 //        connect();
-//        call("Initialized Connect Message");
+//        call("Initialized  Connect Message");
     }
 
     public void setUrl(String url) {
